@@ -20,7 +20,7 @@ public class AddOne extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @EJB
-    CounterBean               cb;
+    CounterBean               cd;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,9 +37,9 @@ public class AddOne extends HttpServlet {
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException,
             IOException {
         PrintWriter out = response.getWriter();
-        out.println( "The current count value is " + cb.getCount() );
-        cb.addOneToCount();
-        out.println( "The count was increme,ted by One. The current count value is " + cb.getCount() );
+        out.println( "The current count value is " + cd.getCount() );
+        cd.addOneToCount();
+        out.println( "The count was increme,ted by One. The current count value is " + cd.getCount() );
     }
 
     /**
