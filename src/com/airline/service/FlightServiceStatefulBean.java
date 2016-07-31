@@ -1,17 +1,17 @@
 package com.airline.service;
 
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 
 /**
  * Session Bean implementation class FlightService
  */
-@Stateless
-public class FlightService implements FlightLocal, FlightRemote {
+@Stateful( name = "flightStateful" )
+public class FlightServiceStatefulBean implements FlightLocal_ejb1 {
 
     /**
      * Default constructor.
      */
-    public FlightService() {
+    public FlightServiceStatefulBean() {
         // TODO Auto-generated constructor stub
     }
 

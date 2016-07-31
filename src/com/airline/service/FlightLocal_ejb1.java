@@ -3,7 +3,7 @@ package com.airline.service;
 import javax.ejb.Local;
 
 @Local
-public interface FlightLocal {
+public interface FlightLocal_ejb1 {
 
     public Integer getId();
 
