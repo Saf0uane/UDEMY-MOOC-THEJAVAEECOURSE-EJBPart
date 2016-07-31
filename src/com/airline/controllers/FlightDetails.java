@@ -3,16 +3,14 @@ package com.airline.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.airline.service.FlightService;
+import com.airline.service.FlightLocal;
 
 /**
  * Servlet implementation class FlightDetails
@@ -21,7 +19,8 @@ import com.airline.service.FlightService;
 public class FlightDetails extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private FlightService     fs               = null;
+    @EJB
+    private FlightLocal       fs;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,20 +39,7 @@ public class FlightDetails extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         out.println( "The flights details servlet has been called " );
-
-        try {
-            Context context = new InitialContext();
-            Object fObj = context.lookup( "java:global/ejb1/FlightService!com.airline.service.FlightService" );
-            fs = (FlightService) fObj;
-        } catch ( NamingException e ) {
-            System.out.println( "Naming Exception has occured when trying to lookup the FlightService EJB" );
-            ;
-            e.printStackTrace();
-        }
-
-        if ( fs != null ) {
-            out.println( "Flight details : " + fs.getFrom() + " to " + fs.getTo() );
-        }
+        out.println( "Flight details : " + fs.getFrom() + " to " + fs.getTo() );
 
     }
 
