@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.airline.service.FlightLocal;
+import com.airline.service.FlightRemote;
 
 /**
  * Servlet implementation class FlightDetails
@@ -21,6 +22,9 @@ public class FlightDetails extends HttpServlet {
 
     @EJB
     private FlightLocal       fs;
+
+    @EJB
+    private FlightRemote      fsRemote;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +43,8 @@ public class FlightDetails extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         out.println( "The flights details servlet has been called " );
-        out.println( "Flight details : " + fs.getFrom() + " to " + fs.getTo() );
+        out.println( "Local Flight details : " + fs.getFrom() + " to " + fs.getTo() );
+        out.println( "Remote Flight details : " + fsRemote.getFrom() + " to " + fsRemote.getTo() );
 
     }
 
